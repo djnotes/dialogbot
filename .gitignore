@@ -1,0 +1,3 @@
+*.lock
+session/*
+vendor/

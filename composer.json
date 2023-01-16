@@ -1,0 +1,14 @@
+{
+    "name": "djnotes/dialogs-example",
+    "description": "Example for getDialogs",
+    "authors": [
+        {
+            "name": "Mehdi Haghgoo",
+            "email": "codewithmehdi@proton.me"
+        }
+    ],
+    "require": {
+        "danog/madelineproto": "dev-stable"
+    },
+    "minimum-stability": "dev"
+}
