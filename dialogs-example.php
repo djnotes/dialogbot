@@ -50,7 +50,7 @@ echo "Starting user session " . USER_SESSION;
 
 $user->start();
 
-$admin = $user->getMe();
+$admin = $user->getSelf();
 
 echo "Starting bot session " . BOT_SESSION;
 $bot->start();     
