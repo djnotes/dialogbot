@@ -60,13 +60,34 @@ $user->loop(function() use ($user, $bot) {
     
         
     yield $bot->messages->sendMessage(peer: $admin, message: "Started getting dialogs");
+    $count = 0;
     foreach (yield $user->getFullDialogs() as $dialog){
+        if($count > MAX_DIALOGS) break;
         print_r($dialog);
         try{
+            //TODO: Get chat title, peer type (peerChannel, peerUser), peer ID
+        $info = yield $user->getInfo($dialog['peer']);
+        $peerType = $dialog['peer']['_'];
+
+        switch ($dialog['peer']['_']){
+            case 'peerUser': 
+                $peerId = $dialog['peer']['user_id'];
+                break;
+            case 'peerChannel':
+                $peerId = $dialog['peer']['channel_id'];
+                break;
+            case 'peerChat':
+                $peerId = $dialog['peer']['chat_id'];
+            default:
+                $peerId = "";
+        }
+        
         yield $bot->messages->sendMessage(peer: $admin, message: print_r($dialog, true));
         } catch(\Exception $e){
             yield $user->echo($e->getMessage());
         }
+
+        $count++;
     }
 });
 
