@@ -62,7 +62,11 @@ $user->loop(function() use ($user, $bot) {
     yield $bot->messages->sendMessage(peer: $admin, message: "Started getting dialogs");
     foreach (yield $user->getFullDialogs() as $dialog){
         print_r($dialog);
-        yield $bot->messages->sendMedia(peer: $admin, message: print_r($dialog, true));
+        try{
+        yield $bot->messages->sendMessage(peer: $admin, message: print_r($dialog, true));
+        } catch(\Exception $e){
+            yield $user->echo($e->getMessage());
+        }
     }
 });
 
