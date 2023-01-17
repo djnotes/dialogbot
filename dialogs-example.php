@@ -48,12 +48,12 @@ $bot = new API(__DIR__ . "/session/" . BOT_SESSION);
 
 
 
-$user->loop(function() use ($user, $bot, $admin) {   
+$user->loop(function() use ($user, $bot) {   
     yield $user->echo( "Starting user session " . USER_SESSION);
 
     $user->start();
     
-    $admin = $user->getSelf();
+    $admin = yield $user->getSelf();
     
     yield $user->echo("Starting bot session " . BOT_SESSION);
     $bot->start();     
@@ -62,6 +62,7 @@ $user->loop(function() use ($user, $bot, $admin) {
     yield $bot->messages->sendMessage(peer: $admin, message: "Started getting dialogs");
     foreach (yield $user->getFullDialogs() as $dialog){
         print_r($dialog);
+        yield $bot->messages->sendMedia(peer: $admin, message: print_r($dialog, true));
     }
 });
 
