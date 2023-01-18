@@ -40,34 +40,36 @@ const USER_SESSION = "myuser.madeline";
 
 const BOT_SESSION = "mybot.madeline";
 
-
+const MAX_DIALOGS = 10;
 
 $user = new API(__DIR__ . "/session/" . USER_SESSION);
 $bot = new API(__DIR__ . "/session/" . BOT_SESSION);
 
-
+print("Welcome to the bot\n");
 
 
 $user->loop(function() use ($user, $bot) {   
-    yield $user->echo( "Starting user session " . USER_SESSION);
+    yield $user->echo( "Starting user session " . USER_SESSION . PHP_EOL);
 
     $user->start();
     
     $admin = yield $user->getSelf();
     
-    yield $user->echo("Starting bot session " . BOT_SESSION);
+    yield $user->echo("Starting bot session " . BOT_SESSION . PHP_EOL);
     $bot->start();     
     
         
     yield $bot->messages->sendMessage(peer: $admin, message: "Started getting dialogs");
     $count = 0;
     foreach (yield $user->getFullDialogs() as $dialog){
-        if($count > MAX_DIALOGS) break;
+        if ($dialog['_'] != 'dialog') continue; //Might also be dialogFolder
+        if($count > MAX_DIALOGS) break; //Break out of loop after retrieving MAX_DIALOGS dialogs
         print_r($dialog);
         try{
             //TODO: Get chat title, peer type (peerChannel, peerUser), peer ID
         $info = yield $user->getInfo($dialog['peer']);
         $peerType = $dialog['peer']['_'];
+        $topMessageId = $dialog['top_message'];
 
         switch ($dialog['peer']['_']){
             case 'peerUser': 
@@ -81,10 +83,11 @@ $user->loop(function() use ($user, $bot) {
             default:
                 $peerId = "";
         }
-        
-        yield $bot->messages->sendMessage(peer: $admin, message: print_r($dialog, true));
+        // $messages = yield $user->channels->getMessages(channel: $peerId, id: $topMessageId);
+
+        yield $bot->messages->sendMessage(peer: $admin, message: "$topMessageId - $peerType - $peerId");
         } catch(\Exception $e){
-            yield $user->echo($e->getMessage());
+            yield $user->echo("{$e->getFile()}: {$e->getLine()}: {$e->getMessage()}");
         }
 
         $count++;

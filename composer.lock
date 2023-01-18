@@ -1639,12 +1639,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/websocket.git",
-                "reference": "1fc8d4b2324d34a85694801daefecb6c5e98d4ce"
+                "reference": "1c9f585d142fe15ac6b5e30f28151788eecb8b10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/websocket/zipball/1fc8d4b2324d34a85694801daefecb6c5e98d4ce",
-                "reference": "1fc8d4b2324d34a85694801daefecb6c5e98d4ce",
+                "url": "https://api.github.com/repos/amphp/websocket/zipball/1c9f585d142fe15ac6b5e30f28151788eecb8b10",
+                "reference": "1c9f585d142fe15ac6b5e30f28151788eecb8b10",
                 "shasum": ""
             },
             "require": {
@@ -1712,7 +1712,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-14T19:47:42+00:00"
+            "time": "2023-01-18T05:11:35+00:00"
         },
         {
             "name": "amphp/websocket-client",
@@ -2138,12 +2138,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/danog/MadelineProto.git",
-                "reference": "f1dccb28cee790a401c27acfd35b684084a94c5c"
+                "reference": "49c2b0343954ba6d7a3bdbc95c370fc0f98fff2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danog/MadelineProto/zipball/f1dccb28cee790a401c27acfd35b684084a94c5c",
-                "reference": "f1dccb28cee790a401c27acfd35b684084a94c5c",
+                "url": "https://api.github.com/repos/danog/MadelineProto/zipball/49c2b0343954ba6d7a3bdbc95c370fc0f98fff2c",
+                "reference": "49c2b0343954ba6d7a3bdbc95c370fc0f98fff2c",
                 "shasum": ""
             },
             "require": {
@@ -2257,7 +2257,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-16T22:12:58+00:00"
+            "time": "2023-01-17T11:10:10+00:00"
         },
         {
             "name": "danog/primemodule",
@@ -2985,12 +2985,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "3ad3693d31d6685d590ae67da0367b3c0976407e"
+                "reference": "fa9bf44ed62e7bb114818e33bfb8bcff1508800e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/3ad3693d31d6685d590ae67da0367b3c0976407e",
-                "reference": "3ad3693d31d6685d590ae67da0367b3c0976407e",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/fa9bf44ed62e7bb114818e33bfb8bcff1508800e",
+                "reference": "fa9bf44ed62e7bb114818e33bfb8bcff1508800e",
                 "shasum": ""
             },
             "require": {
@@ -3087,7 +3087,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-06T20:57:05+00:00"
+            "time": "2023-01-17T13:56:10+00:00"
         },
         {
             "name": "psr/http-factory",
