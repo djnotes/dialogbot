@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "danog/madelineproto": "dev-stable"
+        "danog/madelineproto": "8.0.0-beta42"
     },
     "minimum-stability": "dev"
 }

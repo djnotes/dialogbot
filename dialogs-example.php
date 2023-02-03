@@ -35,6 +35,10 @@ include __DIR__ . '/vendor/autoload.php';
 // require_once 'madeline.php';
 
 use \danog\MadelineProto\API;
+use danog\MadelineProto\Settings;
+use danog\MadelineProto\Settings\Connection;
+use danog\MadelineProto\Settings\Logger;
+use danog\MadelineProto\Stream\Proxy\SocksProxy;
 
 const USER_SESSION = "myuser.madeline";
 
@@ -42,8 +46,30 @@ const BOT_SESSION = "mybot.madeline";
 
 const MAX_DIALOGS = 10;
 
+$connection = new Connection;
+$connection->addProxy(
+    SocksProxy::class,
+    [
+        'address'  => '127.0.0.1',
+        'port'     =>  1090,
+        'username' => '',
+        'password' => ''
+    ]
+);
+
+$connection->setTimeout(10.0);
+
+
 $user = new API(__DIR__ . "/session/" . USER_SESSION);
+
 $bot = new API(__DIR__ . "/session/" . BOT_SESSION);
+
+
+
+
+$user->updateSettings($connection);
+$bot->updateSettings($connection);
+
 
 print("Welcome to the bot\n");
 
@@ -59,7 +85,7 @@ $user->loop(function() use ($user, $bot) {
     $bot->start();     
     
         
-    yield $bot->messages->sendMessage(peer: $admin, message: "Started getting dialogs");
+    yield $bot->messages->sendMessage(peer: 'djnotes', message: "Started getting dialogs");
     $count = 0;
     foreach (yield $user->getFullDialogs() as $dialog){
         if ($dialog['_'] != 'dialog') continue; //Might also be dialogFolder
@@ -92,6 +118,7 @@ $user->loop(function() use ($user, $bot) {
 
         $count++;
     }
+    
 });
 
 
